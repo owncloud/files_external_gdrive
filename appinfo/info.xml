@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<info>
+	<id>files_external_gdrive</id>
+	<name>Google Drive external storage support</name>
+	<description>GDrive backend of external storage</description>
+	<licence>AGPL</licence>
+	<author>Vincent Petry</author>
+	<version>0.1.0</version>
+	<types>
+		<filesystem/>
+	</types>
+
+	<namespace>Files_external_gdrive</namespace>
+	<dependencies>
+		<owncloud min-version="10.0" max-version="10.0"/>
+	</dependencies>
+	<website>https://github.com/owncloud/files_external_gdrive/</website>
+	<bugs>https://github.com/owncloud/files_external_gdrive/issues</bugs>
+	<repository type="git">https://github.com/owncloud/files_external_gdrive.git</repository>
+</info>
