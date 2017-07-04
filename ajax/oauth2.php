@@ -62,7 +62,7 @@ if (isset($_POST['client_id']) && isset($_POST['client_secret']) && isset($_POST
 					return;
 				}
 				OCP\JSON::success(['data' => [
-					'token' => $token
+					'token' => json_encode($token)
 				]]);
 			} catch (Exception $exception) {
 				OCP\JSON::error(['data' => [
