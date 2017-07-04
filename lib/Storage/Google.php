@@ -60,18 +60,16 @@ class Google extends \OCP\Files\Storage\StorageAdapter {
 			&& isset($params['client_id']) && isset($params['client_secret'])
 			&& isset($params['token'])
 		) {
-			$this->client = new \Google_Client();
+			$config = [
+				'retry' => [
+					'retries' => 5
+				]
+			];
+			$this->client = new \Google_Client($config);
 			$this->client->setClientId($params['client_id']);
 			$this->client->setClientSecret($params['client_secret']);
 			$this->client->setScopes(['https://www.googleapis.com/auth/drive']);
 			$this->client->setAccessToken($params['token']);
-			// if curl isn't available we're likely to run into
-			// https://github.com/google/google-api-php-client/issues/59
-			// - disable gzip to avoid it.
-			if (!function_exists('curl_version') || !function_exists('curl_exec')) {
-				$this->client->setClassConfig("Google_Http_Request", "disable_gzip", true);
-			}
-			$this->client->setClassConfig('Google_Task_Runner', 'retries', 5);
 			// note: API connection is lazy
 			$this->service = new \Google_Service_Drive($this->client);
 			$token = json_decode($params['token'], true);

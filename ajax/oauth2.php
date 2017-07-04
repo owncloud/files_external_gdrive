@@ -55,6 +55,12 @@ if (isset($_POST['client_id']) && isset($_POST['client_secret']) && isset($_POST
 		} else if ($step == 2 && isset($_POST['code'])) {
 			try {
 				$token = $client->authenticate((string)$_POST['code']);
+				if (isset($token['error'])) {
+					OCP\JSON::error(['data' => [
+						'message' => $l->t('Step 2 failed. Exception: %s', [$token['error_description']])
+					]]);
+					return;
+				}
 				OCP\JSON::success(['data' => [
 					'token' => $token
 				]]);
