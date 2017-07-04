@@ -25,14 +25,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  *
  */
-set_include_path(get_include_path().PATH_SEPARATOR.
-	\OC_App::getAppPath('files_external').'/3rdparty/google-api-php-client/src');
-require_once 'Google/autoload.php';
 
-OCP\JSON::checkAppEnabled('files_external');
 OCP\JSON::checkLoggedIn();
 OCP\JSON::callCheck();
-$l = \OC::$server->getL10N('files_external');
+$l = \OC::$server->getL10N('files_external_gdrive');
 
 // FIXME: currently hard-coded to Google Drive
 if (isset($_POST['client_id']) && isset($_POST['client_secret']) && isset($_POST['redirect'])) {
