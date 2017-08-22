@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	var backendId = 'googledrive';
-	var backendUrl = OC.generateUrl('apps/files_external_gdrive/ajax/oauth2.php');
+	var backendUrl = OC.generateUrl('apps/files_external_gdrive/oauth');
 
-	function generateUrl($tr) {
+	function generateUrl() {
 		// no mapping between client ID and Google 'project', so we always load the same URL
 		return 'https://console.developers.google.com/';
 	}
@@ -34,7 +34,7 @@ $(document).ready(function() {
 	 * abstract away the details of sending the request to backend for getting the AuthURL or
 	 * verifying the code, mounting the storage config etc
 	 */
-	$('.configuration').on('oauth_step1', function (event, data) {
+	$('#files_external').on('oauth_step1', '.configuration', function (event, data) {
 		if (data['backend_id'] !== backendId) {
 			return false;	// means the trigger is not for this storage adapter
 		}
@@ -43,7 +43,7 @@ $(document).ready(function() {
 		OCA.External.Settings.OAuth2.getAuthUrl(backendUrl, data);
 	});
 
-	$('.configuration').on('oauth_step2', function (event, data) {
+	$('#files_external').on('oauth_step2', '.configuration', function (event, data) {
 		if (data['backend_id'] !== backendId || data['code'] === undefined) {
 			return false;		// means the trigger is not for this OAuth2 grant
 		}
@@ -53,7 +53,7 @@ $(document).ready(function() {
 			OC.dialogs.alert(message,
 				t('files_external_gdrive', 'Error verifying OAuth2 Code for ' + backendId)
 			);
-		})
+		});
 	});
 
 });

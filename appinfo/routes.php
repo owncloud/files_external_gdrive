@@ -1,11 +1,5 @@
 <?php
 /**
- * @author Joas Schilling <coding@schilljs.com>
- * @author Jörn Friedrich Dreyer <jfd@butonic.de>
- * @author Morris Jobke <hey@morrisjobke.de>
- * @author Robin McCorkell <robin@mccorkell.me.uk>
- * @author Ross Nicoll <jrn@jrn.me.uk>
- * @author Thomas Müller <thomas.mueller@tmit.eu>
  * @author Vincent Petry <pvince81@owncloud.com>
  *
  * @copyright Copyright (c) 2017, ownCloud GmbH
@@ -25,6 +19,9 @@
  *
  */
 
-$this->create('files_external_gdrive_oauth2', 'ajax/oauth2.php')
-	->actionInclude('files_external_gdrive/ajax/oauth2.php');
-
+$application = new \OCA\Files_external_gdrive\AppInfo\Application();
+$application->registerRoutes($this, [
+	'routes' => [
+		['name' => 'oauth#receiveToken', 'url' => '/oauth', 'verb' => 'POST'],
+	],
+]);
