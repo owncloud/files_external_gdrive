@@ -39,6 +39,7 @@ class Google extends Backend {
 			->setStorageClass('\OCA\Files_external_gdrive\Storage\Google')
 			->setText($l->t('Google Drive'))
 			->addParameters([
+                                    (new DefinitionParameter('root', $l->t('Root')))->setFlag(DefinitionParameter::FLAG_OPTIONAL),                               
 				// all parameters handled in OAuth2 mechanism
 			])
 			->addAuthScheme(AuthMechanism::SCHEME_OAUTH2)
