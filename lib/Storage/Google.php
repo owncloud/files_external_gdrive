@@ -1,5 +1,5 @@
 <?php
-/* Adam Williamson <awilliam@redhat.com>
+/* @author Adam Williamson <awilliam@redhat.com>
  * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
  * @author Bart Visscher <bartv@thisnet.nl>
  * @author Christopher Schäpers <kondou@ts.unde.re>
@@ -46,7 +46,6 @@ class Google extends \OCP\Files\Storage\StorageAdapter {
 	private $root;
 
 	private static $tempFiles = [];
-	private static $prevRoot = null;
 
 	// Google Doc mimetypes
 	const FOLDER = 'application/vnd.google-apps.folder';
@@ -76,16 +75,13 @@ class Google extends \OCP\Files\Storage\StorageAdapter {
 			$token = json_decode($params['token'], true);
 			$this->id = 'google::'.substr($params['client_id'], 0, 30).$token['created'];
 			$this->root = isset($params['root']) ? $params['root'] : '';
-			if(!$this->is_dir('')) {
-				throw new \Exception("$this->root is not a valid root directory. Please check storage settings");
-			}
 		} else {
 			throw new \Exception('Creating Google storage failed');
 		}
 	}
 
 	public function getId() {
-		return $this->id;
+		return $this->id.'/'.$this->root;
 	}
 
 	/**
@@ -689,11 +685,6 @@ class Google extends \OCP\Files\Storage\StorageAdapter {
 	}
 
 	public function hasUpdated($path, $time) {
-		// Changing virtual root must trigger an update
-		if ($this->root !== self::$prevRoot) {
-			self::$prevRoot = $this->root;
-			return true;
-		}
 		$appConfig = \OC::$server->getAppConfig();
 		if ($this->is_file($path)) {
 			return parent::hasUpdated($path, $time);
