@@ -457,7 +457,7 @@ class Google extends \OCP\Files\Storage\StorageAdapter {
 							$response = $client->get($downloadUrl, [
 								'headers' => $httpRequest->getRequestHeaders(),
 								'stream' => true,
-								'verify' => realpath(__DIR__ . '/../../../3rdparty/google-api-php-client/src/Google/IO/cacerts.pem'),
+								'verify' => realpath(__DIR__ . '/../../vendor/google/apiclient/src/Google/IO/cacerts.pem'),
 							]);
 						} catch (RequestException $e) {
 							if(!is_null($e->getResponse())) {
