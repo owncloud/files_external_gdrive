@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "22:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: guzzlehttp/guzzle
+    versions:
+    - "< 7, >= 6.0.a"
+  - dependency-name: guzzlehttp/guzzle
+    versions:
+    - 7.2.0
