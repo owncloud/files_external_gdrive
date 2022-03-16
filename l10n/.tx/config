@@ -7,4 +7,3 @@ file_filter = <lang>/files_external_gdrive.po
 source_file = templates/files_external_gdrive.pot
 source_lang = en
 type = PO
-
