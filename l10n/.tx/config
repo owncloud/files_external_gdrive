@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 lang_map = ja_JP: ja
 
-[owncloud.files_external_gdrive]
+[o:owncloud-org:p:owncloud:r:files_external_gdrive]
 file_filter = <lang>/files_external_gdrive.po
 source_file = templates/files_external_gdrive.pot
 source_lang = en
