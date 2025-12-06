@@ -1,0 +1,8 @@
+{ "translations": {
+    "Google Drive App Configuration" : "Google 雲端硬碟應用程式設定",
+    "Error verifying OAuth2 Code for " : "驗證 OAuth2 代碼時發生錯誤",
+    "Google Drive" : "Google Drive",
+    "Step 1 failed. Exception: %s" : "步驟 1 失敗，出現異常: %s",
+    "Step 2 failed. Exception: %s" : "步骤 2 失败。异常：%s"
+},"pluralForm" :"nplurals=1; plural=0;"
+}
